@@ -5,12 +5,19 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   const ref = useRef();
 
   useEffect(() => {
-    document.addEventListener('click', () =>{
-      if(ref.current && ref.current.contains(event.trget)){
+    const onBodyClick = (event) => {
+     if (ref.current && ref.current.contains(event.target)) {
         return;
       }
+ 
       setOpen(false);
-    }, {capture: true});
+    };
+ 
+    document.body.addEventListener('click', onBodyClick);
+ 
+    return () => {
+      document.body.removeEventListener('click', onBodyClick);
+    };
   }, []);
 
 
@@ -31,7 +38,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   });
 
   return (
-    <div className="ui form">
+    <div ref={ref} className="ui form">
       <div className="field">
         <label className="label">Select a Color</label>
         <div
