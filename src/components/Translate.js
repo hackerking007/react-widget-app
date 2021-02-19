@@ -1,21 +1,25 @@
 import React, {useState} from 'react';
 import App from '../App';
 import Dropdown from './Dropdown';
-
+import Convert from './Convert';
 
 const options = [
     {
         label: 'Afrikaans',
-        value: 'af'
+        value: 'af',
     },
     {
         label: 'Arabic',
-        value: 'ar'
+        value: 'ar',
     },
     {
         label: 'Hindi',
-        value: 'Hi'
-    }
+        value: 'Hi',
+    },
+    {
+        label: 'Dutch',
+        value: 'nl',
+    },
 ];
 
 const Translate = () => {
@@ -30,8 +34,13 @@ const Translate = () => {
                 </div>
             </div>
             <Dropdown label='Select a language' selected={language} onSelectedChange={setLanguage} options ={options} />
+            <hr />
+            <h3 className="ui header">Output</h3>
+            <Convert text={text} language={language} />
         </div>
+        
     );
 };
 
 export default Translate;
+//AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM//
